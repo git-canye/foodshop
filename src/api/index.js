@@ -22,13 +22,13 @@ export const reqShops = ({latitude, longitude}) => ajax(BASE_URL + '/shops', {la
 export const reqSearchShop = (geohash, keyword) => ajax(BASE_URL + '/search_shops', {geohash, keyword})
 
 // 5.获取一次性验证码
-// export const reqOneTimeCode = ()
+// 不是ajax请求，src可通过methods改变
 
 // 6.账号密码登录
 export const reqPwdLogin = ({name, pwd, captcha}) => ajax(BASE_URL + '/login_pwd', {name, pwd, captcha}, 'POST')
 
 // 7.获取短信验证码
-export const reqSendCode = phone => ajax(BASE_URL + '/sendcode', {phone})
+export const reqSendCode = (phone) => ajax(BASE_URL + '/sendcode', {phone})
 
 // 8.手机号验证码登录
 export const reqSmsLogin = (phone, code) => ajax(BASE_URL + '/login_sms', {phone, code}, 'POST')

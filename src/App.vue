@@ -12,9 +12,10 @@
     mounted () {
       // this.$store.dispatch('getAddress')
       this.getAddress()
+      this.getUserInfo()
     },
     methods: {
-      ...mapActions(['getAddress','getShops'])
+      ...mapActions(['getAddress','getShops','getUserInfo'])
     },
     components: {
       FooterGuide

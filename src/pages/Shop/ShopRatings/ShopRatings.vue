@@ -72,85 +72,9 @@
 </template>
 
 <script>
-import BScroll from 'better-scroll'
-import {mapState, mapGetters} from 'vuex'
-import Star from '../../../components/Star/Star.vue'
-
-export default {
-
-  data () {
-    return {
-      onlyShowText: true, // 是否只显示有文本的评价信息
-      selectType: 2 // 选择的评价类型: 0满意, 1不满意, 2全部
-    }
-  },
-  mounted () {
-    this.$store.dispatch('getShopRatings', () => {
-      this.$nextTick(() => {
-        // 传入DOM元素
-        new BScroll(this.$refs.ratings, {
-          click: true
-        })
-      })
-    })
-  },
-  // filters: {
-  //   dateFormat: function (input) {
-  //     var d = new Date(input)
-  //     var year = d.getFullYear()
-  //     var month = d.getMonth() + 1
-  //     var day = d.getDate() < 10 ? '0' + d.getDate() : '' + d.getDate()
-  //     var hour = d.getHours()
-  //     var minutes = d.getMinutes()
-  //     var seconds = d.getSeconds()
-  //     return `
-  //     ${year}-${month}-${day} ${hour}:${minutes}:${seconds}
-  //     `
-  //   }
-  // },
-  // 在computed里获取info和ratings的State数据以及返回好评数量的Getters
-  computed: {
-    ...mapState(['info', 'ratings']),
-    ...mapGetters(['positiveSize']),
-    // 为要渲染的评价列表设置各种必要条件 使其按照用户选择进行渲染
-    filterRatings () {
-      // 得到相关的数据
-      const {ratings, onlyShowText, selectType} = this
-
-      // 产生一个过滤新数组
-      return ratings.filter(rating => {
-        const {rateType, text} = rating
-        /*
-          条件1:
-              selectType: 0/1/2
-              rateType: 0/1
-              全部 || 满意、不满意中的一种
-              selectType===2 || selectType===rateType
-          条件2
-              onlyShowText: true/false
-              text: 有值/没值
-              符合条件一的全部评价 || 符合条件一的有文字的评价
-              !onlyShowText || text.length>0
-          */
-        // 返回一个布尔值
-        return (selectType === 2 || selectType === rateType) && (!onlyShowText || text.length > 0)
-      })
-    }
-  },
-
-  methods: {
-    setSelectType (selectType) {
-      this.selectType = selectType
-    },
-    toggleOnlyShowText () {
-      this.onlyShowText = !this.onlyShowText
-    }
-  },
-
-  components: {
-    Star
+  export default {
+    
   }
-}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">

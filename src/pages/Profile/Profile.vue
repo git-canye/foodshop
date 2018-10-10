@@ -3,17 +3,17 @@
     <HeaderTop title="我的"/>
     <section class="profile-number">
       <!-- 利用router-link实现到Login组件的跳转 -->
-      <router-link to="/login" class="profile-link">
+      <router-link :to="userInfo._id? '/userinfo':'/login'" class="profile-link">
         <div class="profile_image">
           <i class="iconfont icon-yonghuming"></i>
         </div>
         <div class="user-info">
-          <p class="user-info-top">登录/注册</p>
+          <p class="user-info-top" v-if="!userInfo.phone">{{userInfo.name || '登陆/注册'}}</p>
           <p>
             <span class="user-icon">
               <i class="iconfont icon-msnui-tel icon-mobile"></i>
             </span>
-            <span class="icon-mobile-number">暂无绑定手机号</span>
+            <span class="icon-mobile-number">{{userInfo.phone || '暂无绑定手机号'}}</span>
           </p>
         </div>
         <span class="arrow">
@@ -62,13 +62,13 @@
           </span>
         </div>
       </a>
-      <!-- Mint外卖会员卡 -->
+      <!-- canye外卖会员卡 -->
       <a href="javascript:" class="my_order">
         <span>
           <i class="iconfont icon-viptehuishiduan"></i>
         </span>
         <div class="my_order_div">
-          <span>Mint外卖会员卡</span>
+          <span>canye外卖会员卡</span>
           <span class="my_order_icon">
             <i class="iconfont icon-previewright"></i>
           </span>
@@ -89,12 +89,34 @@
         </div>
       </a>
     </section>
+    <section class="profile_my_order border-1px">
+      <mt-button type="danger" style="width: 100%" v-if="userInfo._id" @click="logout">退出登陆</mt-button>
+    </section>
   </section>
 </template>
 
 <script>
+  import {mapState} from 'vuex'
+  import {MessageBox,Toast} from 'mint-ui'
   import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
   export default {
+    computed: {
+      ...mapState(['userInfo'])
+    },
+    methods: {
+      logout () {
+        MessageBox.confirm('确认退出吗？').then(
+          action => {
+            // 请求退出
+            this.$store.dispatch('logout')
+            Toast('退出成功')
+          },
+          action => {
+
+          }
+        );
+      }
+    },
     components: {
       HeaderTop
     }
