@@ -1,6 +1,7 @@
 <template>
   <div class="cartcontrol">
     <transition name="move">
+      <!-- click.stop阻止事件冒泡 -->
       <div class="iconfont icon-removecircleoutline" v-if="food.count" @click.stop="updateFoodCount(false)"></div>
     </transition>
     <div class="cart-count" v-if="food.count">{{food.count}}</div>
@@ -9,17 +10,16 @@
 </template>
 
 <script>
-export default {
-  props: {
-    food: Object
-  },
-
-  methods: {
-    updateFoodCount (isAdd) {
-      this.$store.dispatch('updateFoodCount', {isAdd, food: this.food})
+  export default {
+    props: {
+      food: Object
+    },
+    methods: {
+      updateFoodCount (isAdd) {
+        this.$store.dispatch('updateFoodCount',{isAdd,food: this.food})
+      }
     }
   }
-}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">

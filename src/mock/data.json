@@ -1144,7 +1144,7 @@
       "rateType": 0,
       "text": "不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": [
+      "recommends": [
         "南瓜粥",
         "皮蛋瘦肉粥",
         "扁豆焖面",
@@ -1161,7 +1161,7 @@
       "deliveryTime": "",
       "text": "服务态度不错",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": [
+      "recommends": [
         "扁豆焖面"
       ]
     },
@@ -1172,7 +1172,7 @@
       "rateType": 1,
       "text": "",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": [
+      "recommends": [
         "娃娃菜炖豆腐",
         "牛肉馅饼"
       ]
@@ -1185,7 +1185,7 @@
       "rateType": 0,
       "text": "良心店铺",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "2******d",
@@ -1195,7 +1195,7 @@
       "rateType": 0,
       "text": "",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": [
+      "recommends": [
         "娃娃菜炖豆腐",
         "牛肉馅饼"
       ]
@@ -1208,7 +1208,7 @@
       "rateType": 1,
       "text": "送货速度蜗牛一样",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "d******c",
@@ -1218,7 +1218,7 @@
       "rateType": 0,
       "text": "很喜欢的粥店",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "2******3",
@@ -1228,7 +1228,7 @@
       "rateType": 0,
       "text": "量给的还可以",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "3******8",
@@ -1238,7 +1238,7 @@
       "rateType": 1,
       "text": "",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "a******a",
@@ -1248,7 +1248,7 @@
       "rateType": 0,
       "text": "孩子喜欢吃这家",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": [
+      "recommends": [
         "南瓜粥"
       ]
     },
@@ -1260,7 +1260,7 @@
       "rateType": 0,
       "text": "粥挺好吃的",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "t******b",
@@ -1270,7 +1270,7 @@
       "rateType": 1,
       "text": "",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "f******c",
@@ -1280,7 +1280,7 @@
       "rateType": 0,
       "text": "送货速度很快",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "k******3",
@@ -1290,7 +1290,7 @@
       "rateType": 0,
       "text": "",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "u******b",
@@ -1300,7 +1300,7 @@
       "rateType": 0,
       "text": "下雨天给快递小哥点个赞",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "s******c",
@@ -1310,7 +1310,7 @@
       "rateType": 0,
       "text": "好",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "z******3",
@@ -1320,7 +1320,7 @@
       "rateType": 0,
       "text": "吃了还想再吃",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "n******b",
@@ -1330,7 +1330,7 @@
       "rateType": 1,
       "text": "发票开的不对",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "m******c",
@@ -1340,7 +1340,7 @@
       "rateType": 0,
       "text": "好吃",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "l******3",
@@ -1350,7 +1350,7 @@
       "rateType": 0,
       "text": "还不错吧",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "3******o",
@@ -1360,7 +1360,7 @@
       "rateType": 1,
       "text": "",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "3******p",
@@ -1370,7 +1370,7 @@
       "rateType": 0,
       "text": "很喜欢的粥",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "o******k",
@@ -1380,7 +1380,7 @@
       "rateType": 0,
       "text": "",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     },
     {
       "username": "k******b",
@@ -1390,7 +1390,7 @@
       "rateType": 0,
       "text": "",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
-      "recommend": []
+      "recommends": []
     }
   ]
 }

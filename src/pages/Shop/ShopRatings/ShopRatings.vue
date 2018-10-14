@@ -5,7 +5,7 @@
         <div class="overview-left">
           <h1 class="score">{{info.score}}</h1>
           <div class="title">综合评分</div>
-          <div class="rank">高于周边商家99%</div>
+          <div class="rank">高于周边商家{{info.rankRate}}%</div>
         </div>
         <div class="overview-right">
           <div class="score-wrapper">
@@ -29,13 +29,13 @@
 
       <div class="ratingselect">
         <div class="rating-type border-1px">
-          <span class="block positive" :class="{active: selectType===2}" @click="setSelectType(2)">
+          <span class="block positive" :class="{active: selectType==2}" @click="setSelectType(2)">
             全部<span class="count">{{ratings.length}}</span>
           </span>
-          <span class="block positive" :class="{active: selectType===0}" @click="setSelectType(0)">
+          <span class="block positive" :class="{active: selectType==0}" @click="setSelectType(0)">
             满意<span class="count">{{positiveSize}}</span>
           </span>
-          <span class="block negative" :class="{active: selectType===1}" @click="setSelectType(1)">
+          <span class="block negative" :class="{active: selectType==1}" @click="setSelectType(1)">
             不满意<span class="count">{{ratings.length-positiveSize}}</span>
           </span>
         </div>
@@ -47,22 +47,25 @@
 
       <div class="rating-wrapper">
         <ul>
-          <li class="rating-item" v-for="(rating, index) in filterRatings" :key="index">
+          <li class="rating-item" v-for="(rating,index) in filterRatings" :key="index">
             <div class="avatar">
-              <img width="28" height="28" :src="rating.avatar">
+              <img width="28" height="28" :src="rating.avatar" />
             </div>
             <div class="content">
               <h1 class="name">{{rating.username}}</h1>
               <div class="star-wrapper">
                 <Star :score="rating.score" :size="24" />
-                <span class="delivery">{{rating.deliveryTime}}</span>
+                <span class="delivery">送达时间{{rating.deliveryTime||'0'}}分钟</span>
               </div>
               <p class="text">{{rating.text}}</p>
               <div class="recommend">
-                <span class="iconfont" :class="rating.rateType===0 ? 'icon-thumb_up' : 'icon-thumb_down'"></span>
-                <span class="item" v-for="(item, index) in rating.recommend" :key="index">{{item}}</span>
+                <!-- 赞或踩 -->
+                <span class="iconfont" :class="rating.rateType? 'icon-thumb_up' : 'icon-thumb_down'"></span>
+                <span class="item" v-for="(recommend,index) in rating.recommends" :key="index">
+                  {{recommend}}
+                </span>
               </div>
-              <div class="time">{{rating.rateTime | date-format}}</div>
+              <div class="time">{{rating.rateTime}}</div>
             </div>
           </li>
         </ul>
@@ -72,14 +75,64 @@
 </template>
 
 <script>
+  import BScroll from 'better-scroll'
+  import {mapState,mapGetters} from 'vuex'
+  import Star from '../../../components/Star/Star.vue'
   export default {
-    
+    data () {
+      return {
+        onlyShowText: true, // 是否只显示有内容的
+        selectType: 2, // 选择的评价类型：0-满意，1-不满意，2-全部
+      }
+    },
+    mounted () {
+      this.$store.dispatch('getShopRatings',() => {
+        this.$nextTick(() => {
+          new BScroll(this.$refs.ratings,{
+            click: true
+          })
+        })
+      })
+    },
+    computed: {
+      ...mapState(['info','ratings']),
+      ...mapGetters(['positiveSize']),
+      filterRatings () { // 评论分类过滤
+        // 得到相关数据
+        const {ratings,onlyShowText,selectType} = this
+        // 产生一个新数组
+        return ratings.filter(rating => {
+          const {rateType,text} = rating
+          /*
+            条件1. 
+              selectType: 0/1/2
+              rateType: 0/1
+              selectType==2 || selectType==rateType
+            条件2.
+              onlyShowText: T/F
+              text: 有值/没值
+              !onlyShowText || text.length>0
+          */
+          return (selectType==2 || selectType==rateType) && (!onlyShowText || text.length>0)
+        })
+      }
+    },
+    methods: {
+      setSelectType (type) {
+        this.selectType = type
+      },
+      toggleOnlyShowText () {
+        this.onlyShowText = !this.onlyShowText
+      }
+    },
+    components: {
+      Star
+    }
   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../../common/stylus/mixins.styl"
-
   .ratings
     position: absolute
     top: 195px

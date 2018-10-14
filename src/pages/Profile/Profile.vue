@@ -106,11 +106,12 @@
     methods: {
       logout () {
         MessageBox.confirm('确认退出吗？').then(
+          // 请求退出
           action => {
-            // 请求退出
             this.$store.dispatch('logout')
             Toast('退出成功')
           },
+          // 取消
           action => {
 
           }

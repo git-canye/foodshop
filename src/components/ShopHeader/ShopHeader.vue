@@ -2,7 +2,7 @@
   <div class="shop-header">
     <nav class="shop-nav" :style="{backgroundImage: `url(${info.bgImg})`}">
       <a class="back" @click="$router.back()">
-        <i class="iconfont icon-arrow_left"></i>
+        <i class="iconfont icon-arrow_left">&lt;</i>
       </a>
     </nav>
     <div class="shop-content" @click="toggleShopShow">
@@ -26,9 +26,10 @@
         </div>
       </div>
     </div>
-    <div class="shop-header-discounts"  v-if="info.supports" @click="toggleSupportShow">
+    <!-- 三层表达式容易出问题，v-if验证数据是否已接受 -->
+    <div class="shop-header-discounts" v-if="info.supports" @click="toggleSupportShow">
       <div class="discounts-left">
-        <div class="activity" :class="supportClasses[info.supports[0].type]" >
+        <div class="activity" :class="supportClasses[info.supports[0].type]">
           <span class="content-tag">
             <span class="mini-tag">{{info.supports[0].name}}</span>
           </span>
@@ -58,8 +59,8 @@
               <p>月售</p>
             </li>
             <li>
-              <h3>{{info.description}}</h3>
-              <p>约{{info.deliveryTime}}分钟</p>
+              <h3>{{info.deliveryTime}}</h3>
+              <p>分钟</p>
             </li>
             <li>
               <h3>{{info.deliveryPrice}}元</h3>
@@ -76,24 +77,23 @@
           <div class="brief-modal-notice">
             {{info.bulletin}}
           </div>
-          <div class="mask-footer" @click="toggleShopShow">
-            <span class="iconfont icon-close"></span>
+          <div class="mask-footer">
+            <span class="iconfont icon-close" @click="toggleShopShow"></span>
           </div>
         </div>
         <div class="brief-modal-cover"></div>
       </div>
     </transition>
     <transition name="fade">
-      <div class="activity-sheet" v-show="supportShow">
+      <div class="activity-sheet"  v-show="supportShow">
         <div class="activity-sheet-content">
           <h2 class="activity-sheet-title">优惠活动</h2>
           <ul class="list">
-            <li class="activity-item" v-for="(support, index) in info.supports"
-                :key="index" :class="supportClasses[support.type]">
+            <li class="activity-item" v-for="(support,index) in info.supports" :key="index" :class="supportClasses[support.type]">
             <span class="content-tag">
                 <span class="mini-tag">{{support.name}}</span>
-              </span>
-              <span class="activity-content">{{support.content}}</span>
+            </span>
+            <span class="activity-content">{{support.content}}</span>
             </li>
           </ul>
           <div class="activity-sheet-close" @click="toggleSupportShow">
@@ -109,7 +109,24 @@
 <script>
   import {mapState} from 'vuex'
   export default {
-    
+    data () {
+      return {
+        supportClasses: ['activity-green','activity-red','activity-orange'], // 存放优惠标签颜色class名
+        shopShow: false,
+        supportShow: false
+      }
+    },
+    computed: {
+      ...mapState(['info'])
+    },
+    methods: {
+      toggleShopShow () {
+        this.shopShow = !this.shopShow
+      },
+      toggleSupportShow () {
+        this.supportShow = !this.supportShow
+      }
+    }
   }
 </script>
 

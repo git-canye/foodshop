@@ -38,15 +38,16 @@ export const reqUserInfo = () => ajax(BASE_URL + '/userinfo')
 
 // 10.请求登出
 export const reqLogout = () => ajax(BASE_URL + '/logout')
+
+
 /**
- * 获取商家信息(下列请求由mock拦截并返回 不需要代理)
+ * 下列请求由mock拦截并返回 不需要代理
  */
+// 获取商家信息
 export const reqShopInfo = () => ajax('/info')
-/**
- * 获取商家评价数组
- */
+
+// 获取商家评价数组
 export const reqShopRatings = () => ajax('/ratings')
-/**
- * 获取商家商品数组
- */
+
+// 获取商家商品数组
 export const reqShopGoods = () => ajax('/goods')

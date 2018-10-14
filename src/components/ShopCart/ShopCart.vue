@@ -2,7 +2,7 @@
   <div>
     <div class="shopcart">
       <div class="content">
-        <div class="content-left" @click="toggleShow">
+        <div class="content-left" @click="toggleIsShow">
           <div class="logo-wrapper">
             <div class="logo" :class="{highlight: totalCount}">
               <i class="iconfont icon-shopping" :class="{highlight: totalCount}"></i>
@@ -11,7 +11,7 @@
           </div>
           <div class="price" :class="{highlight: totalCount}">￥{{totalPrice}}</div>
           <div class="desc">另需配送费￥{{info.deliveryPrice}}元</div>
-        </div>icon-shopping
+        </div>
         <div class="content-right">
           <div class="pay" :class="payClass">
             {{payText}}
@@ -19,14 +19,14 @@
         </div>
       </div>
       <transition name="move">
-        <div class="shopcart-list" v-show="isShow">
+        <div class="shopcart-list" v-show="listShow">
           <div class="list-header">
             <h1 class="title">购物车</h1>
             <span class="empty" @click="clearCart">清空</span>
           </div>
           <div class="list-content">
             <ul>
-              <li class="food" v-for="(food, index) in cartFoods" :key="index">
+              <li class="food" v-for="(food,index) in cartFoods" :key="index">
                 <span class="name">{{food.name}}</span>
                 <div class="price"><span>￥{{food.price}}</span></div>
                 <div class="cartcontrol-wrapper">
@@ -37,94 +37,88 @@
           </div>
         </div>
       </transition>
-
     </div>
-    <div class="list-mask" v-show="isShow" @click="toggleShow"></div>
+    <div class="list-mask" v-show="listShow" @click="toggleIsShow"></div>
   </div>
 </template>
 
 <script>
-import { MessageBox } from 'mint-ui'
-import BScroll from 'better-scroll'
-import {mapState, mapGetters} from 'vuex'
-import CartControl from '../CartControl/CartControl.vue'
+  import { MessageBox } from 'mint-ui'
+  import BScroll from 'better-scroll'
+  import {mapState, mapGetters} from 'vuex'
+  import CartControl from '../CartControl/CartControl.vue'
 
-export default {
-  data () {
-    return {
-      isShow: false
-    }
-  },
-  watch: {
-    totalCount: function () {
-      // 如果总数量为0, 直接不显示
-      if (this.totalCount === 0) {
-        this.isShow = false
-        // return false
+  export default {
+    data () {
+      return {
+        isShow: false
       }
     },
-    isShow: function () {
-      if (this.isShow) {
-        this.$nextTick(() => {
-          // 实现BScroll的实例是一个单例
-          if (!this.scroll) {
-            this.scroll = new BScroll('.list-content', {
-              click: true
+    computed: {
+      ...mapState(['cartFoods','info']),
+      ...mapGetters(['totalCount','totalPrice']),
+      payClass () {
+        const {totalPrice} = this
+        const {minPrice} = this.info
+        return totalPrice>=minPrice? 'enough' : 'not-enough'
+      },
+      payText () {
+        const {totalPrice} = this
+        const {minPrice} = this.info
+        if (totalPrice==0) {
+          return `￥${minPrice}元起送`
+        } else if (totalPrice<minPrice) {
+          return `还差￥${minPrice-totalPrice}元起送`
+        } else {
+          return '结算'
+        }
+      },
+      listShow () {
+        // 如果总数量为0，直接不显示
+        if (this.totalCount==0) {
+          this.isShow = false
+          return false
+        } else {
+          if (this.isShow) {
+            this.$nextTick(() => {
+              // 防止创建多个BScroll，实现它的实例是一个单例
+              if (!this.scroll) {
+                this.scroll = new BScroll('.list-content',{
+                  click: true
+                })
+              } else {
+                // 刷新滚动条，重新统计内容高度
+                this.scroll.refresh()
+              }
             })
-          } else {
-            console.log(555)
-            this.scroll.refresh() // 让滚动条刷新一下: 重新统计内容的高度
           }
-        })
-      }
-
-      return this.isShow
-    }
-  },
-  computed: {
-    // 在购物车中获取到cartFoods的state 以及商家的info
-    ...mapState(['cartFoods', 'info']),
-    // 获取相应的Getters里的数据
-    ...mapGetters(['totalCount', 'totalPrice']),
-
-    // 通过计算已购食品来设置购物车不同的样式和提示文字
-    payClass () {
-      const {totalPrice} = this
-      const {minPrice} = this.info
-
-      return totalPrice >= minPrice ? 'enough' : 'not-enough'
-    },
-    payText () {
-      const {totalPrice} = this
-      const {minPrice} = this.info
-      if (totalPrice === 0) {
-        return `￥${minPrice}元起送`
-      } else if (totalPrice < minPrice) {
-        return `还差￥${minPrice - totalPrice}元起送`
-      } else {
-        return '去结算'
-      }
-    }
-  },
-
-  methods: {
-    toggleShow () {
-      // 只有当总数量大于0时切换
-      if (this.totalCount > 0) {
-        this.isShow = !this.isShow
+          return this.isShow
+        }
       }
     },
+    methods: {
+      toggleIsShow () {
+        // 当总数量大于0时才切换
+        if (this.totalCount>0) {
+          this.isShow = !this.isShow
+        }
+      },
 
-    clearCart () {
-      MessageBox.confirm('确定清空购物车吗?').then(action => {
-        this.$store.dispatch('clearCart')
-      }, () => {})
+      clearCart () {
+        MessageBox.confirm('确定清空购物车吗？').then(
+          action => {
+            this.$store.dispatch('clearCart')
+          },
+          action => {
+            // 取消todo
+          }
+        );
+      }
+    },
+    components: {
+      CartControl
     }
-  },
-  components: {
-    CartControl
   }
-}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
