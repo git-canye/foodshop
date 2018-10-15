@@ -30,7 +30,8 @@
 
 ## 3. API接口文档
 
-[项目API接口文档](https://github.com/git-canye/foodshop/blob/master/mintshop-server/API.md)
+[项目API接口文档](https://github.com/git-canye/foodshop/blob/master/canye-server/API.md)
+
 
 ## 4. 项目开发
 
