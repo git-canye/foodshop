@@ -53,26 +53,34 @@
 
 ## 5. 项目截图
 
-**首页**
-![msite](/shows/msite.png "首页")
+1. 首页
 
-**订单**
-![order](/shows/order.png "订单")
+<img src="/shows/msite.png" width="300" height="500" alt="msite"/>
 
-**搜索**
-![search](/shows/search.png "搜索")
+2. 订单
 
-**个人**
-![profile](/shows/profile.png "个人")
+<img src="/shows/order.png" width="300" height="500" alt="order"/>
 
-**登陆**
-![login](/shows/login.png "登陆")
+3. 搜索
 
-**点餐**
-![food](/shows/food.png "点餐")
+<img src="/shows/search.png" width="300" height="500" alt="search"/>
 
-**评价**
-![rating](/shows/rating.png "评价")
+4. 个人
 
-**商店详情**
-![shop-detail](/shows/shop-detail.png "商店详情")
+<img src="/shows/profile.png" width="300" height="500" alt="profile"/>
+
+5. 登陆
+
+<img src="/shows/login.png" width="300" height="500" alt="login"/>
+
+6. 点餐
+
+<img src="/shows/food.png" width="300" height="500" alt="food"/>
+
+7. 评价
+
+<img src="/shows/rating.png" width="300" height="500" alt="rating"/>
+
+8. 商店详情
+
+<img src="/shows/shop-detail.png" width="300" height="500" alt="shop-detail"/>
